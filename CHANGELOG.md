@@ -1,6 +1,7 @@
 # Changelog
 
 ## 1.0.0 (not released)
+Android: the module reads dependencies built with a newer Kotlin than React Native 0.74 brings (`-Xskip-metadata-version-check`); found by the first CI run.
 First version. A thin bridge over the VisionForgeX SDKs: Android 1.0.2 (JitPack) and iOS 1.0.0 (CocoaPods). Every decision is made by the platform.
 - `VisionForgeX.initialize`, `interstitial`, `rewarded`, `rewardedInterstitial`, `appOpen` with `show()` returning why nothing was shown, `setKeyValue`, consent (`isPrivacyOptionsRequired`, `showPrivacyOptions`), `onEvent` and `onRevenue` subscriptions, `VfxBanner` component.
 - Not in 1.0.0: native ads, the debug panel.

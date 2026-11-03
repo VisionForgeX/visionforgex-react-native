@@ -18,7 +18,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
+    kotlinOptions {
+        jvmTarget = "17"
+        // The native SDK and Google's ads library are built with a newer Kotlin than many React Native versions
+        // bring (RN 0.74 compiles with Kotlin 1.9): this lets this module read their metadata.
+        freeCompilerArgs += ["-Xskip-metadata-version-check"]
+    }
 }
 
 repositories {
