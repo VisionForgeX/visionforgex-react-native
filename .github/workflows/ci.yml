@@ -32,6 +32,8 @@ jobs:
           cd ../example && npm install && npm install "$GITHUB_WORKSPACE"/visionforgex-react-native-sdk-*.tgz
           # the template's minSdk is 23; Google Mobile Ads needs 24 (the README tells developers)
           sed -i 's/minSdkVersion = .*/minSdkVersion = 24/' android/build.gradle
+          # React Native 0.74 compiles the app with Kotlin 1.9; Google's ads library is built with 2.2 (the README tells developers)
+          printf '\nallprojects { tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { kotlinOptions.freeCompilerArgs += ["-Xskip-metadata-version-check"] } }\n' >> android/build.gradle
           cd android && ./gradlew assembleDebug
   ios:
     name: Build an app with it for iOS

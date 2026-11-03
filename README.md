@@ -28,6 +28,11 @@ on VisionForgeX (minSdk 24):
 
 plus Google's SKAdNetwork identifiers (list on Google's site). Then `cd ios && pod install`.
 
+**Older React Native (0.74 and earlier) on Android**: Google's ads library is built with a newer Kotlin than those versions
+use. In `android/build.gradle` of your app add
+`allprojects { tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { kotlinOptions.freeCompilerArgs += ["-Xskip-metadata-version-check"] } }`
+(or use a newer React Native).
+
 ## Start it and show ads
 
 ```tsx
