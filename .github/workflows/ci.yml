@@ -30,6 +30,8 @@ jobs:
       - run: |
           npx --yes @react-native-community/cli@latest init Example --skip-install --directory ../example --version 0.74.5
           cd ../example && npm install && npm install "$GITHUB_WORKSPACE"/visionforgex-react-native-sdk-*.tgz
+          # the template's minSdk is 23; Google Mobile Ads needs 24 (the README tells developers)
+          sed -i 's/minSdkVersion = .*/minSdkVersion = 24/' android/build.gradle
           cd android && ./gradlew assembleDebug
   ios:
     name: Build an app with it for iOS
@@ -43,5 +45,7 @@ jobs:
       - run: |
           npx --yes @react-native-community/cli@latest init Example --skip-install --directory ../example --version 0.74.5
           cd ../example && npm install && npm install "$GITHUB_WORKSPACE"/visionforgex-react-native-sdk-*.tgz
+          # the VisionForgeX pod is not on CocoaPods trunk yet: the example takes it from GitHub
+          python3 -c "import re;p='ios/Podfile';s=open(p).read();s=re.sub(r\"(target 'Example' do\n)\",r\"\1  pod 'VisionForgeX', :git => 'https://github.com/VisionForgeX/visionforgex-ios-sdk.git', :branch => 'main'\n\",s,1);open(p,'w').write(s)"
           cd ios && pod install
           xcodebuild -workspace Example.xcworkspace -scheme Example -sdk iphonesimulator -configuration Debug build CODE_SIGNING_ALLOWED=NO
