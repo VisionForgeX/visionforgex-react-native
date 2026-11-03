@@ -1,0 +1,47 @@
+# Checks the package on GitHub's machines. Open the "Actions" tab of this repository to see the result.
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  typescript:
+    name: Typecheck, test, build (TypeScript)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+  android:
+    name: Build an app with it for Android
+    needs: typescript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - run: npm ci && npm run build && npm pack
+      - run: |
+          npx --yes @react-native-community/cli@latest init Example --skip-install --directory ../example --version 0.74.5
+          cd ../example && npm install && npm install "$GITHUB_WORKSPACE"/visionforgex-react-native-sdk-*.tgz
+          cd android && ./gradlew assembleDebug
+  ios:
+    name: Build an app with it for iOS
+    needs: typescript
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci && npm run build && npm pack
+      - run: |
+          npx --yes @react-native-community/cli@latest init Example --skip-install --directory ../example --version 0.74.5
+          cd ../example && npm install && npm install "$GITHUB_WORKSPACE"/visionforgex-react-native-sdk-*.tgz
+          cd ios && pod install
+          xcodebuild -workspace Example.xcworkspace -scheme Example -sdk iphonesimulator -configuration Debug build CODE_SIGNING_ALLOWED=NO
