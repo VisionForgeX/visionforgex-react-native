@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,swift}"
   s.swift_version = "5.9"
   s.dependency "React-Core"
-  s.dependency "VisionForgeX", ">= 1.0.0"   # the iOS SDK, which brings Google Mobile Ads
+  s.dependency "VisionForgeX", ">= 1.2.0"   # the iOS SDK, which brings Google Mobile Ads
 end

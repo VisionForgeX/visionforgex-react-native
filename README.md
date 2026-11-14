@@ -28,6 +28,10 @@ on VisionForgeX (minSdk 24):
 
 plus Google's SKAdNetwork identifiers (list on Google's site). Then `cd ios && pod install`.
 
+**Google's SDK on Android**: the package runs on Google's GMA Next-Gen SDK, which needs `compileSdkVersion = 35` or higher
+in `android/build.gradle` (React Native 0.76 and later have it). To stay on Google Mobile Ads 25.x instead (Google retires it
+on 30 Jun 2028), add `visionforgexEngine=gma` to `android/gradle.properties`.
+
 **Older React Native (0.74 and earlier) on Android**: Google's ads library is built with a newer Kotlin than those versions
 use. In `android/build.gradle` of your app add
 `allprojects { tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { kotlinOptions.freeCompilerArgs += ["-Xskip-metadata-version-check"] } }`

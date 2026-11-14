@@ -12,7 +12,7 @@ apply plugin: "kotlin-android"
 
 android {
     namespace = "com.visionforgex.rn"
-    compileSdk = 34
+    compileSdk = 35   // Google's Next-Gen SDK needs 35
     defaultConfig { minSdk = 24 }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -34,5 +34,8 @@ repositories {
 
 dependencies {
     implementation("com.facebook.react:react-android")   // the version of the app's React Native
-    api("com.github.VisionForgeX.visionforgex-android-sdk:vfx-ads:1.0.2")
+    // Which of Google's Android SDKs the app runs on: "nextgen" (Google's GMA Next-Gen SDK, the default) or "gma" (Google
+    // Mobile Ads 25.x, retired by Google on 30 Jun 2028): visionforgexEngine=gma in the app's android/gradle.properties.
+    // VFX_SDK_VERSION (a tag or a commit, which JitPack builds) is only for this repository's CI.
+    api("com.github.VisionForgeX.visionforgex-android-sdk:${(rootProject.findProperty("visionforgexEngine") ?: "nextgen").toString() == "gma" ? "vfx-ads" : "vfx-ads-nextgen"}:${(System.getenv("VFX_SDK_VERSION") ?: "1.2.0")}")
 }
