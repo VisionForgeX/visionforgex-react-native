@@ -9,7 +9,16 @@ Needs a React Native app with native modules (not Expo Go; Expo works with a dev
 ## Add it
 
 ```sh
-npm install @visionforgex/react-native-sdk
+npm install github:VisionForgeX/visionforgex-react-native#1.0.0
+```
+
+(Once the package is on npm this becomes `npm install @visionforgex/react-native-sdk`.)
+
+**iOS**: until the native SDK is on CocoaPods' catalogue, add this line inside your app's target in `ios/Podfile`, then
+`cd ios && pod install`:
+
+```ruby
+pod 'VisionForgeX', :git => 'https://github.com/VisionForgeX/visionforgex-ios-sdk.git', :tag => '1.2.0'
 ```
 
 **Android**: in `android/app/src/main/AndroidManifest.xml`, inside `<application>`, the App ID shown on your app's page
@@ -68,4 +77,4 @@ Placements: `banner`, `collapsible_banner`, `interstitial`, `rewarded`, `rewarde
 
 ## Status
 
-1.0.0 has not been released. Its TypeScript layer is tested; the Android and iOS modules are checked by this repository's CI.
+1.0.0 is released on GitHub (15 Nov 2026). Its TypeScript layer is tested; the Android and iOS modules are built by this repository's CI on every push.

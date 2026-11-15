@@ -1,6 +1,7 @@
 # Changelog
 
-## 1.0.0 (not released)
+## 1.0.0 (15 Nov 2026)
+Installs from GitHub too (`npm install github:VisionForgeX/visionforgex-react-native#1.0.0`): `prepare` builds it.
 On the native SDKs 1.2.0. **Android runs on Google's GMA Next-Gen SDK by default** (Google's preferred Android SDK; the app's
 compileSdk must be 35 or higher); `visionforgexEngine=gma` in the app's `android/gradle.properties` keeps Google Mobile Ads
 25.x (retired by Google on 30 Jun 2028). The app's code is the same either way. iOS: Google Mobile Ads 13 (Xcode 16).
