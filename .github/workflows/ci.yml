@@ -39,7 +39,6 @@ jobs:
           cd android && ./gradlew assembleDebug
           # the same on Google Mobile Ads 25.x
           echo "visionforgexEngine=gma" >> gradle.properties && ./gradlew assembleDebug
-        env: { VFX_SDK_VERSION: c4ef122 }   # until the Android SDK's 1.2.0 tag exists (remove once it is released)
   ios:
     name: Build an app with it for iOS
     needs: typescript
