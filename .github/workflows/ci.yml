@@ -36,6 +36,8 @@ jobs:
           sed -i 's/compileSdkVersion = .*/compileSdkVersion = 35/' android/build.gradle
           # React Native 0.74 compiles the app with Kotlin 1.9; Google's ads library is built with 2.2 (the README tells developers)
           printf '\nallprojects { tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { kotlinOptions.freeCompilerArgs += ["-Xskip-metadata-version-check"] } }\n' >> android/build.gradle
+          # the template gives Gradle 2 GB; Jetifier on React Native's Hermes library needs more beside Google's SDK
+          sed -i 's/^org.gradle.jvmargs=.*/org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g/' android/gradle.properties
           cd android && ./gradlew assembleDebug
           # the same on Google Mobile Ads 25.x
           echo "visionforgexEngine=gma" >> gradle.properties && ./gradlew assembleDebug
