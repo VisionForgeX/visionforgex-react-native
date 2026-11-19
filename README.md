@@ -9,7 +9,7 @@ Needs a React Native app with native modules (not Expo Go; Expo works with a dev
 ## Add it
 
 ```sh
-npm install github:VisionForgeX/visionforgex-react-native#1.0.0
+npm install github:VisionForgeX/visionforgex-react-native#1.0.1
 ```
 
 (Once the package is on npm this becomes `npm install @visionforgex/react-native-sdk`.)
@@ -18,7 +18,7 @@ npm install github:VisionForgeX/visionforgex-react-native#1.0.0
 `cd ios && pod install`:
 
 ```ruby
-pod 'VisionForgeX', :git => 'https://github.com/VisionForgeX/visionforgex-ios-sdk.git', :tag => '1.2.0'
+pod 'VisionForgeX', :git => 'https://github.com/VisionForgeX/visionforgex-ios-sdk.git', :tag => '1.3.0'
 ```
 
 **Android**: in `android/app/src/main/AndroidManifest.xml`, inside `<application>`, the App ID shown on your app's page
@@ -75,6 +75,14 @@ await VisionForgeX.initialize('demo', { googleDemoAds: true });
 
 Placements: `banner`, `collapsible_banner`, `interstitial`, `rewarded`, `rewarded_interstitial`, `app_open`.
 
+## Ad revenue in AppsFlyer or Adjust
+
+When VisionForgeX switches it on for your app, each impression's revenue is sent to the attribution tool the app already
+runs, with no JavaScript to write: **AppsFlyer** 6.15 or newer (`react-native-appsflyer`) or **Adjust**
+(`react-native-adjust`). Add and start that tool as its own guide says; VisionForgeX finds it in the app and never starts
+or sets it up. Not in the app: nothing is sent. Demo ads are never sent. Don't also send `onRevenue` to the same tool from
+your own code, or each impression counts twice. Needs the native SDKs 1.3.0, which this package uses from 1.0.1.
+
 ## Status
 
-1.0.0 is released on GitHub (15 Nov 2026). Its TypeScript layer is tested; the Android and iOS modules are built by this repository's CI on every push.
+1.0.1 (on the native SDKs 1.3.0) is released on GitHub (19 Nov 2026); 1.0.0 was 15 Nov 2026. Its TypeScript layer is tested; the Android and iOS modules are built by this repository's CI on every push.

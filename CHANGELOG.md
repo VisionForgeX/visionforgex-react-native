@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 (19 Nov 2026)
+On the native SDKs **1.3.0** (Android `vfx-ads-nextgen`/`vfx-ads` 1.3.0 from JitPack; iOS pod `VisionForgeX` 1.3.0, the
+podspec now needs `>= 1.3.0`, so the app's Podfile line moves to `:tag => '1.3.0'`). What it adds: when VisionForgeX
+switches it on for the app, each impression's revenue goes to AppsFlyer (6.15+) or Adjust if the app has it, with no
+JavaScript to write. The TypeScript API is unchanged; an app that has neither tool behaves exactly as with 1.0.0.
+
 ## 1.0.0 (15 Nov 2026)
 Installs from GitHub too (`npm install github:VisionForgeX/visionforgex-react-native#1.0.0`): `prepare` builds it.
 On the native SDKs 1.2.0. **Android runs on Google's GMA Next-Gen SDK by default** (Google's preferred Android SDK; the app's

@@ -56,7 +56,7 @@ export class VfxFullScreen {
  */
 export const VisionForgeX = {
   /** This package's version. */
-  version: '1.0.0',
+  version: '1.0.1',
 
   /** Starts the SDK; resolves when it is ready or has found out why it is not. Calling it again does nothing new. */
   initialize(appKey: string, options: VfxOptions = {}): Promise<VfxStatus> {

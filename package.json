@@ -1,6 +1,6 @@
 {
   "name": "@visionforgex/react-native-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "VisionForgeX ads for React Native apps: Google Ad Manager demand with every decision (pacing, floors, refresh, consent, experiments) made on the platform.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

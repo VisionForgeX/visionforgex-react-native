@@ -37,5 +37,5 @@ dependencies {
     // Which of Google's Android SDKs the app runs on: "nextgen" (Google's GMA Next-Gen SDK, the default) or "gma" (Google
     // Mobile Ads 25.x, retired by Google on 30 Jun 2028): visionforgexEngine=gma in the app's android/gradle.properties.
     // VFX_SDK_VERSION (a tag or a commit, which JitPack builds) is only for this repository's CI.
-    api("com.github.VisionForgeX.visionforgex-android-sdk:${(rootProject.findProperty("visionforgexEngine") ?: "nextgen").toString() == "gma" ? "vfx-ads" : "vfx-ads-nextgen"}:${(System.getenv("VFX_SDK_VERSION") ?: "1.2.0")}")
+    api("com.github.VisionForgeX.visionforgex-android-sdk:${(rootProject.findProperty("visionforgexEngine") ?: "nextgen").toString() == "gma" ? "vfx-ads" : "vfx-ads-nextgen"}:${(System.getenv("VFX_SDK_VERSION") ?: "1.3.0")}")
 }
